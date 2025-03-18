@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catch Me If You Can</title>
+    <style>
+        /* 1. Setting up the page layout and background */
+        /* This ensures the game is centered on the screen and has a colorful gradient background */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #9A8DF8, #85E2B0, #86D6F2);
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* 2. Creating a game area for the button to move inside */
+        /* The game container acts as a boundary for the button's movement */
+        .game-container {
+            position: relative;
+            width: 80vw;
+            height: 70vh;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.2);
+            overflow: hidden; /* Prevents the button from moving outside */
+        }
+
+        /* 3. Styling the button that moves */
+        /* The button has a modern look with rounded corners and smooth transitions */
+        .catch-button {
+            position: absolute; /* Allows it to move freely inside the container */
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background-color: #6D5DF8;
+            border: 2px solid #6B54F5;
+            border-radius: 20px; /* Makes the button rounded */
+            cursor: pointer; /* Shows a pointer cursor to indicate it's clickable */
+            transition: all 0.2s ease-in-out; /* Creates a smooth effect when the button moves */
+        }
+    </style>
+</head>
+<body>
+<!-- 4. Adding a button inside the game container -->
+<!-- This is the interactive element of our game -->
+<div class="game-container">
+    <button id="catchMe" class="catch-button">Catch Me!</button>
+</div>
+
+<script>
+    // 5. JavaScript logic to move the button when hovered
+    // Getting the button and game container elements
+    const button = document.getElementById("catchMe");
+    const container = document.querySelector(".game-container");
+
+    function moveButton() {
+        // Calculate the maximum X and Y positions where the button can move
+        const maxX = container.clientWidth - button.clientWidth;
+        const maxY = container.clientHeight - button.clientHeight;
+
+        // Generate random X and Y positions within the allowed range
+        const randomX = Math.random() * maxX;
+        const randomY = Math.random() * maxY;
+
+        // Apply the new random position to the button
+        button.style.left = `${randomX}px`;
+        button.style.top = `${randomY}px`;
+    }
+
+    // Add an event listener to move the button when the mouse hovers over it
+    button.addEventListener("mouseover", moveButton);
+</script>
+</body>
+</html>
